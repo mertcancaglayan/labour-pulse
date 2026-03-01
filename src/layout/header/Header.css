@@ -1,0 +1,47 @@
+.masthead {
+	background: var(--ink);
+	color: var(--bg);
+	padding: 0 40px;
+	border-bottom: 4px solid var(--red);
+}
+.masthead-inner {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	min-height: 72px;
+}
+.masthead-title {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.pub-name {
+	font-family: "Bebas Neue", sans-serif;
+	font-size: 2.6rem;
+	letter-spacing: 0.04em;
+	line-height: 1;
+	color: #fff;
+}
+.pub-sub {
+	font-size: 0.58rem;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: #a09888;
+	margin-top: 4px;
+}
+.masthead-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	gap: 4px;
+	font-size: 0.6rem;
+	letter-spacing: 0.1em;
+	color: #a09888;
+	text-transform: uppercase;
+}
+.masthead-meta strong {
+	color: #fff;
+	font-weight: 500;
+}
