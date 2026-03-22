@@ -1,0 +1,11 @@
+footer {
+	background: var(--ink);
+	color: #a09888;
+	padding: 14px 40px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.58rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	border-top: 3px solid var(--red);
+}

@@ -1,0 +1,36 @@
+.edition-bar {
+	background: var(--red);
+	color: #fff;
+	padding: 5px 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.6rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+.edition-bar-tabs {
+	display: flex;
+	gap: 0;
+}
+.ed-tab {
+	background: none;
+	border: none;
+	color: rgba(255, 255, 255, 0.6);
+	font-family: "IBM Plex Mono", monospace;
+	font-size: 0.6rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	padding: 4px 16px;
+	cursor: pointer;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.15s;
+}
+.ed-tab:first-child {
+	border-left: none;
+}
+.ed-tab.active,
+.ed-tab:hover {
+	color: #fff;
+	background: rgba(0, 0, 0, 0.2);
+}
