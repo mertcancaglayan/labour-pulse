@@ -1,85 +1,55 @@
-import React, { useEffect, useState } from 'react'
 import './App.css'
 import EditionBar from './layout/editionBar/EditionBar'
 import Header from './layout/header/Header'
 import Footer from './layout/footer/Footer'
-import { getEconomicMetrics, getLaborMetrics } from './api/client'
-import { INDICATOR_MAP } from './api/endpoints'
+import React, { useEffect, useState } from 'react'
+import { getData } from './services/getRawData'
+import type { TransformedDataI } from './services/transformer'
 
-interface Indicator {
-  id: string;
-  value: string;
-}
-
-interface Country {
-  id: string;
-  value: string;
-}
-
-interface EmploymentData {
-  indicator: Indicator;
-  country: Country;
-  countryiso3code: string;
-  date: string;
-  value: number | null;
-  scale: string;
-  unit: string;
-  obs_status: string;
-  decimal: number;
-}
 
 function App() {
-  const [laborData, setLaborData] = useState<EmploymentData[]>([])
-  const [ecoData, setEcoData] = useState([])
+  // const [laborData, setLaborData] = useState<EmploymentData[]>([])
+  // const [ecoData, setEcoData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState<Record<number, TransformedDataI>>([])
+
+  // if (isLoading) return <div>LOADING</div>
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
+    const init = async () => {
       try {
-        const [laborResponse, ecoResponse] = await Promise.all([
-          getLaborMetrics(),
-          getEconomicMetrics()
-        ]);
+        const response = await getData()
+        const result = response
 
-        setLaborData(laborResponse);
-        setEcoData(ecoResponse);
-
+        setData(result)
+        setIsLoading(false)
       } catch (error) {
-        console.error('Failed to fetch economic metrics:', error);
-      } finally {
-        setIsLoading(false);
+        console.error("Initialization failed", error)
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    init()
+  }, [])
 
+  useEffect(() => {
+    console.log(data);
+  }, [data])
 
-  if (isLoading) return <div>LOADING</div>
+  if (isLoading) {
+    return (
+      <div style={{ background: 'var(--bg)', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <h2 style={{ fontFamily: 'Bebas Neue', letterSpacing: '2px' }}>LOADING DATA...</h2>
+      </div>
+    )
+  }
 
   return (
     <React.Fragment>
       <Header></Header>
       <EditionBar></EditionBar>
-      <div>
-        {laborData.length > 0 && (
-          <div>
-            {
-              laborData.map((e) => {
-                const elementId = e.indicator.id as keyof typeof INDICATOR_MAP;
-                return (
-                  <>
-                    <p><span>{INDICATOR_MAP[elementId]}</span></p>
-                    <p><span>{e.value}</span></p>
-                  </>
-                )
-              })
-            }
-          </div>
-        )}
-      </div>
+
+
       <Footer></Footer>
     </React.Fragment>
   )
