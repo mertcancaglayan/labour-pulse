@@ -26,7 +26,9 @@ function UnemploymentChart() {
     const totalUnemploymentValues = Object.values(data).map(
         (item) => Math.trunc(item["Total Unemployment"])
     )
+    const youthUnemployment = Object.values(data).map((item) => Math.trunc(item["Youth Unemployment"]))
 
+    const graduateUnemployment = Object.values(data).map((item) => Math.trunc(item["Graduate Unemployment"]))
 
     if (isLoading) {
         return (
@@ -47,17 +49,52 @@ function UnemploymentChart() {
                             label: 'Total Unemployment',
                             data: totalUnemploymentValues,
                             backgroundColor: "#534d41",
-                            borderColor: "#423f38"
+                            borderColor: "#423f38",
+                        }, {
+                            label: 'Youth Unemployment',
+                            data: youthUnemployment,
+                            backgroundColor: "#0c7a24",
+                            borderColor: "#0c7a24",
+                        }, {
+                            label: 'Graduate Unemployment',
+                            data: graduateUnemployment,
+                            backgroundColor: "#0e0c7a",
+                            borderColor: "#0e0c7a",
                         },
-
                     ],
                 }}
                 options={{
                     elements: {
                         point: {
                             hoverRadius: 10,
-                            hitRadius: 40,
+                            hitRadius: 10,
                             hoverBorderWidth: 10
+                        }
+
+                    }
+                    ,
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+
+                                    if (label) {
+                                        label += ': ';
+                                    }
+
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', {
+                                            style: 'percent',
+                                            maximumFractionDigits: 1
+                                        }).format(context.parsed.y / 100);
+                                    }
+
+                                    return label;
+                                }
+                            }
                         }
                     }
                 }}
