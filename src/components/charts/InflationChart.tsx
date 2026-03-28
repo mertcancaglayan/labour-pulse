@@ -11,7 +11,6 @@ import {
     Title,
     Tooltip,
     Legend,
-    elements,
 } from "chart.js"
 import { Line } from "react-chartjs-2"
 
