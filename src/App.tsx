@@ -5,6 +5,8 @@ import Footer from './layout/footer/Footer'
 import React, { useEffect, useState } from 'react'
 import { getData } from './services/getRawData'
 import type { TransformedDataI } from './services/transformer'
+import InflationChart from './components/charts/InflationChart'
+import UnemploymentChart from './components/charts/UnemploymentChart'
 
 
 function App() {
@@ -48,7 +50,10 @@ function App() {
     <React.Fragment>
       <Header></Header>
       <EditionBar></EditionBar>
-
+      <div className='chart-grid'>
+        <InflationChart></InflationChart>
+        <UnemploymentChart></UnemploymentChart>
+      </div>
 
       <Footer></Footer>
     </React.Fragment>
