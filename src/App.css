@@ -1,0 +1,10 @@
+.chart-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
+	gap: 0.8rem;
+	padding: 0 40px;
+}
+
+.chart-grid > * {
+	height: 350px;
+}

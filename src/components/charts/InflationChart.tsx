@@ -2,27 +2,9 @@ import { useEffect, useState } from "react"
 import { getData } from "../../services/getRawData"
 import type { TransformedDataI } from "../../services/transformer"
 import {
-    Chart as ChartJS,
     defaults,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
 } from "chart.js"
 import { Line } from "react-chartjs-2"
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-)
 
 
 defaults.maintainAspectRatio = false

@@ -2,11 +2,31 @@ import './App.css'
 import EditionBar from './layout/editionBar/EditionBar'
 import Header from './layout/header/Header'
 import Footer from './layout/footer/Footer'
-import React, { useEffect, useState } from 'react'
-import { getData } from './services/getRawData'
-import type { TransformedDataI } from './services/transformer'
+import React from 'react'
+
 import InflationChart from './components/charts/InflationChart'
 import UnemploymentChart from './components/charts/UnemploymentChart'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js"
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+)
+
 
 
 function App() {

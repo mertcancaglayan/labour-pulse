@@ -23,7 +23,7 @@ function UnemploymentChart() {
     }, [])
 
     const labels = Object.keys(data)
-    const inflationValues = Object.values(data).map(
+    const totalUnemploymentValues = Object.values(data).map(
         (item) => Math.trunc(item["Total Unemployment"])
     )
 
@@ -44,10 +44,10 @@ function UnemploymentChart() {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Inflation by Year',
-                            data: inflationValues,
-                            backgroundColor: "#865b0f",
-                            borderColor: "#865b0f"
+                            label: 'Total Unemployment',
+                            data: totalUnemploymentValues,
+                            backgroundColor: "#534d41",
+                            borderColor: "#423f38"
                         },
 
                     ],
