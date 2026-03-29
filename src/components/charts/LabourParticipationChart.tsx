@@ -59,6 +59,29 @@ function LabourParticipationChart() {
                             hitRadius: 40,
                             hoverBorderWidth: 10
                         }
+                    }, plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+
+                                    if (label) {
+                                        label += ': ';
+                                    }
+
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', {
+                                            style: 'percent',
+                                            maximumFractionDigits: 1
+                                        }).format(context.parsed.y / 100);
+                                    }
+
+                                    return label;
+                                }
+                            }
+                        }
                     }
                 }}
             >
