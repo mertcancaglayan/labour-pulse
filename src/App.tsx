@@ -16,6 +16,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js"
+import PartNGradChart from './components/charts/PartNGradChart'
 
 ChartJS.register(
   CategoryScale,
@@ -73,6 +74,7 @@ function App() {
       <div className='chart-grid'>
         <InflationChart></InflationChart>
         <UnemploymentChart></UnemploymentChart>
+        <PartNGradChart></PartNGradChart>
       </div>
 
       <Footer></Footer>
