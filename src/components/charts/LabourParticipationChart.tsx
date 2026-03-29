@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import type { TransformedDataI } from "../../services/transformer"
-import { getData } from "../../services/getRawData"
 import { Line } from "react-chartjs-2"
+import type { TransformedDataI } from "../../services/transformer"
+import { useEffect, useState } from "react"
+import { getData } from "../../services/getRawData"
 
-function UnemploymentChart() {
+function LabourParticipationChart() {
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState<Record<number, TransformedDataI>>({})
 
@@ -23,12 +23,10 @@ function UnemploymentChart() {
     }, [])
 
     const labels = Object.keys(data)
-    const totalUnemploymentValues = Object.values(data).map(
-        (item) => Math.trunc(item["Total Unemployment"])
+    const labourParticipationRate = Object.values(data).map(
+        (item) => Math.trunc(item["Labor Participation Rate"])
     )
-    const youthUnemployment = Object.values(data).map((item) => Math.trunc(item["Youth Unemployment"]))
 
-    const graduateUnemployment = Object.values(data).map((item) => Math.trunc(item["Graduate Unemployment"]))
 
     if (isLoading) {
         return (
@@ -41,39 +39,27 @@ function UnemploymentChart() {
         <div>
             <Line
                 key={JSON.stringify(data)}
-                datasetIdKey="Unp-id"
+                datasetIdKey="lab-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Total Unemployment',
-                            data: totalUnemploymentValues,
+                            label: 'Labor Participation Rate',
+                            data: labourParticipationRate,
                             backgroundColor: "#534d41",
-                            borderColor: "#423f38",
-                        }, {
-                            label: 'Youth Unemployment',
-                            data: youthUnemployment,
-                            backgroundColor: "#0c7a24",
-                            borderColor: "#0c7a24",
-                        }, {
-                            label: 'Graduate Unemployment',
-                            data: graduateUnemployment,
-                            backgroundColor: "#0e0c7a",
-                            borderColor: "#0e0c7a",
+                            borderColor: "#423f38"
                         },
+
                     ],
                 }}
                 options={{
                     elements: {
                         point: {
                             hoverRadius: 10,
-                            hitRadius: 10,
+                            hitRadius: 40,
                             hoverBorderWidth: 10
                         }
-
-                    }
-                    ,
-                    plugins: {
+                    }, plugins: {
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -106,4 +92,4 @@ function UnemploymentChart() {
     )
 }
 
-export default UnemploymentChart
+export default LabourParticipationChart
