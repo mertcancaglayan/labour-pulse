@@ -15,6 +15,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js"
 import PartNGradChart from './components/charts/PartNGradChart'
 
@@ -25,7 +26,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend, Filler
 )
 
 
