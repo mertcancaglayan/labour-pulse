@@ -3,7 +3,7 @@ import type { TransformedDataI } from "../../services/transformer"
 import { useEffect, useState } from "react"
 import { getData } from "../../services/getRawData"
 
-function PartNGradChart() {
+function LabourParticipationChart() {
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState<Record<number, TransformedDataI>>({})
 
@@ -69,4 +69,4 @@ function PartNGradChart() {
     )
 }
 
-export default PartNGradChart
+export default LabourParticipationChart

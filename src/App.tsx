@@ -17,7 +17,7 @@ import {
   Legend,
   Filler,
 } from "chart.js"
-import PartNGradChart from './components/charts/PartNGradChart'
+import LabourParticipationChart from './components/charts/LabourParticipationChart'
 
 ChartJS.register(
   CategoryScale,
@@ -75,7 +75,7 @@ function App() {
       <div className='chart-grid'>
         <InflationChart></InflationChart>
         <UnemploymentChart></UnemploymentChart>
-        <PartNGradChart></PartNGradChart>
+        <LabourParticipationChart></LabourParticipationChart>
       </div>
 
       <Footer></Footer>
