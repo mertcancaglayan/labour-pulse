@@ -3,7 +3,13 @@ import { Line } from "react-chartjs-2"
 function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number[] }) {
 
     return (
-        <div>
+        <div className="chart-container">
+            <div className="chart-supertitle">ECONOMIC OUTPUT</div>
+            <div className="chart-header">
+                <div className="chart-title">Productivity per Worker</div>
+                <div className="chart-subtitle">Labour productivity in USD (PPP adjusted)</div>
+            </div>
+            <div className="chart-body">
             <Line
                 key={JSON.stringify(laborProductivity)}
                 datasetIdKey="lab-id"
@@ -13,8 +19,8 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
                         {
                             label: 'Labor Productivity',
                             data: laborProductivity,
-                            backgroundColor: "#534d41",
-                            borderColor: "#423f38"
+                            backgroundColor: "#1982c4",
+                            borderColor: "#1982c4"
                         },
 
                     ],
@@ -52,6 +58,7 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
 
 
             </Line>
+            </div>
         </div>
     )
 }
