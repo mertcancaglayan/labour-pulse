@@ -11,7 +11,7 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Labor Participation Rate',
+                            label: 'Labor Productivity',
                             data: laborProductivity,
                             backgroundColor: "#534d41",
                             borderColor: "#423f38"
