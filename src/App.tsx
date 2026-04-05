@@ -16,16 +16,19 @@ import {
   Tooltip,
   Legend,
   Filler,
+  BarElement,
 } from "chart.js"
 import LabourParticipationChart from './components/charts/LabourParticipationChart'
 import ProductivityChart from './components/charts/ProductivityChart'
 import { useData } from './hooks/useData'
+import LabourCompositionChart from './components/charts/LabourCompositionChart'
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend, Filler
@@ -50,6 +53,7 @@ function App() {
           <UnemploymentChart labels={data.labels} totalUnemployment={data.totalUnemployment} youthUnemployment={data.youthUnemployment} graduateUnemployment={data.graduateUnemployment}></UnemploymentChart>
           <LabourParticipationChart labels={data.labels} laborParticipation={data.laborParticipation}></LabourParticipationChart>
           <ProductivityChart labels={data.labels} laborProductivity={data.laborProductivity}></ProductivityChart>
+          <LabourCompositionChart labels={data.labels} servicesSector={data.servicesSector} industrySector={data.industrySector} agricultureSector={data.agricultureSector}></LabourCompositionChart>
         </div>
       )}
 

@@ -12,7 +12,7 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
             <div className="chart-body">
             <Line
                 key={JSON.stringify(laborProductivity)}
-                datasetIdKey="lab-id"
+                datasetIdKey="productivity-id"
                 data={{
                     labels: labels,
                     datasets: [
