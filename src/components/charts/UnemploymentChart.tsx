@@ -1,65 +1,43 @@
-import { useEffect, useState } from "react"
-import type { TransformedDataI } from "../../services/transformer"
-import { getData } from "../../services/getRawData"
 import { Line } from "react-chartjs-2"
 
-function UnemploymentChart() {
-    const [isLoading, setIsLoading] = useState(true)
-    const [data, setData] = useState<Record<number, TransformedDataI>>({})
+interface UnemploymentChartProps {
+    labels: string[];
+    totalUnemployment: number[];
+    youthUnemployment: number[];
+    graduateUnemployment: number[];
+}
 
-    useEffect(() => {
-        const init = async () => {
-            try {
-                const result = await getData()
-                setData(result)
-            } catch (error) {
-                console.error("Initialization failed", error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
+function UnemploymentChart({ labels, totalUnemployment, youthUnemployment, graduateUnemployment }: UnemploymentChartProps) {
 
-        init()
-    }, [])
-
-    const labels = Object.keys(data)
-    const totalUnemploymentValues = Object.values(data).map(
-        (item) => Math.trunc(item["Total Unemployment"])
-    )
-    const youthUnemployment = Object.values(data).map((item) => Math.trunc(item["Youth Unemployment"]))
-
-    const graduateUnemployment = Object.values(data).map((item) => Math.trunc(item["Graduate Unemployment"]))
-
-    if (isLoading) {
-        return (
-            <div style={{ background: 'var(--bg)', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <h2 style={{ fontFamily: 'Bebas Neue', letterSpacing: '2px' }}>LOADING DATA...</h2>
-            </div>
-        )
-    }
     return (
-        <div>
+        <div className="chart-container">
+            <div className="chart-supertitle">LABOUR MARKET</div>
+            <div className="chart-header">
+                <div className="chart-title">Three Decades of Labour Strain</div>
+                <div className="chart-subtitle">Total · Youth · Graduate unemployment rates, 1991–2025</div>
+            </div>
+            <div className="chart-body">
             <Line
-                key={JSON.stringify(data)}
+                key={JSON.stringify(labels)}
                 datasetIdKey="Unp-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
                             label: 'Total Unemployment',
-                            data: totalUnemploymentValues,
-                            backgroundColor: "#534d41",
-                            borderColor: "#423f38",
+                            data: totalUnemployment,
+                            backgroundColor: "#c25339",
+                            borderColor: "#c25339",
                         }, {
                             label: 'Youth Unemployment',
                             data: youthUnemployment,
-                            backgroundColor: "#0c7a24",
-                            borderColor: "#0c7a24",
+                            backgroundColor: "#2a3b5c",
+                            borderColor: "#2a3b5c",
                         }, {
                             label: 'Graduate Unemployment',
                             data: graduateUnemployment,
-                            backgroundColor: "#0e0c7a",
-                            borderColor: "#0e0c7a",
+                            backgroundColor: "#3c5e37",
+                            borderColor: "#3c5e37",
                         },
                     ],
                 }}
@@ -102,6 +80,7 @@ function UnemploymentChart() {
 
 
             </Line>
+            </div>
         </div>
     )
 }

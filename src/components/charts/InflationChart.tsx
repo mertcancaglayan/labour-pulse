@@ -1,60 +1,32 @@
-import { useEffect, useState } from "react"
-import { getData } from "../../services/getRawData"
-import type { TransformedDataI } from "../../services/transformer"
 import {
     defaults,
 } from "chart.js"
 import { Line } from "react-chartjs-2"
 
-
 defaults.maintainAspectRatio = false
 defaults.responsive = true
 
-function InflationChart() {
-    const [isLoading, setIsLoading] = useState(true)
-    const [data, setData] = useState<Record<number, TransformedDataI>>({})
-
-    useEffect(() => {
-        const init = async () => {
-            try {
-                const result = await getData()
-                setData(result)
-            } catch (error) {
-                console.error("Initialization failed", error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        init()
-    }, [])
-
-    if (isLoading) {
-        return (
-            <div style={{ background: 'var(--bg)', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <h2 style={{ fontFamily: 'Bebas Neue', letterSpacing: '2px' }}>LOADING DATA...</h2>
-            </div>
-        )
-    }
-
-    const labels = Object.keys(data)
-    const inflationValues = Object.values(data).map(
-        (item) => Math.trunc(item["Headline Inflation (CPI)"])
-    )
+function InflationChart({ labels, inflation }: { labels: string[]; inflation: number[] }) {
 
     return (
-        <div>
+        <div className="chart-container">
+            <div className="chart-supertitle">PRICE DYNAMICS</div>
+            <div className="chart-header">
+                <div className="chart-title">Inflation Rollercoaster</div>
+                <div className="chart-subtitle">CPI Headline Rate 1990-2024 (log scale)</div>
+            </div>
+            <div className="chart-body">
             <Line
-                key={JSON.stringify(data)}
+                key={JSON.stringify(inflation)}
                 datasetIdKey="kpi-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
                             label: 'Inflation by Year',
-                            data: inflationValues,
-                            backgroundColor: "#865b0f",
-                            borderColor: "#865b0f"
+                            data: inflation,
+                            backgroundColor: "#c7522a",
+                            borderColor: "#c7522a"
                         },
 
                     ],
@@ -94,6 +66,7 @@ function InflationChart() {
 
 
             </Line>
+            </div>
         </div>
     )
 }
