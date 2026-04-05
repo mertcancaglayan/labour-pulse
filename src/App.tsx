@@ -18,6 +18,7 @@ import {
   Filler,
 } from "chart.js"
 import LabourParticipationChart from './components/charts/LabourParticipationChart'
+import ProductivityChart from './components/charts/ProductivityChart'
 
 ChartJS.register(
   CategoryScale,
@@ -76,6 +77,7 @@ function App() {
         <InflationChart></InflationChart>
         <UnemploymentChart></UnemploymentChart>
         <LabourParticipationChart></LabourParticipationChart>
+        <ProductivityChart></ProductivityChart>
       </div>
 
       <Footer></Footer>
