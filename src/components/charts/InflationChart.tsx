@@ -9,7 +9,13 @@ defaults.responsive = true
 function InflationChart({ labels, inflation }: { labels: string[]; inflation: number[] }) {
 
     return (
-        <div>
+        <div className="chart-container">
+            <div className="chart-supertitle">PRICE DYNAMICS</div>
+            <div className="chart-header">
+                <div className="chart-title">Inflation Rollercoaster</div>
+                <div className="chart-subtitle">CPI Headline Rate 1990-2024 (log scale)</div>
+            </div>
+            <div className="chart-body">
             <Line
                 key={JSON.stringify(inflation)}
                 datasetIdKey="kpi-id"
@@ -19,8 +25,8 @@ function InflationChart({ labels, inflation }: { labels: string[]; inflation: nu
                         {
                             label: 'Inflation by Year',
                             data: inflation,
-                            backgroundColor: "#865b0f",
-                            borderColor: "#865b0f"
+                            backgroundColor: "#c7522a",
+                            borderColor: "#c7522a"
                         },
 
                     ],
@@ -60,6 +66,7 @@ function InflationChart({ labels, inflation }: { labels: string[]; inflation: nu
 
 
             </Line>
+            </div>
         </div>
     )
 }

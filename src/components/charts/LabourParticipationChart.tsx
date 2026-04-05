@@ -3,7 +3,13 @@ import { Line } from "react-chartjs-2"
 function LabourParticipationChart({ labels, laborParticipation }: { labels: string[]; laborParticipation: number[] }) {
 
     return (
-        <div>
+        <div className="chart-container">
+            <div className="chart-supertitle">STRUCTURAL INDICATORS</div>
+            <div className="chart-header">
+                <div className="chart-title">Labour Force Participation</div>
+                <div className="chart-subtitle">Active workforce as percentage of working-age population</div>
+            </div>
+            <div className="chart-body">
             <Line
                 key={JSON.stringify(laborParticipation)}
                 datasetIdKey="lab-id"
@@ -13,8 +19,8 @@ function LabourParticipationChart({ labels, laborParticipation }: { labels: stri
                         {
                             label: 'Labor Participation Rate',
                             data: laborParticipation,
-                            backgroundColor: "#534d41",
-                            borderColor: "#423f38"
+                            backgroundColor: "#6a4c93",
+                            borderColor: "#6a4c93"
                         },
 
                     ],
@@ -55,6 +61,7 @@ function LabourParticipationChart({ labels, laborParticipation }: { labels: stri
 
 
             </Line>
+            </div>
         </div>
     )
 }
