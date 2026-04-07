@@ -14,6 +14,10 @@
 	gap: 0.6rem;
 }
 
+.chart-container.bar-chart-container {
+	min-width: 50%;
+}
+
 .chart-supertitle {
 	font-size: 0.65rem;
 	color: var(--muted);

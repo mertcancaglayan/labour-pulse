@@ -1,26 +1,32 @@
+import {
+    defaults,
+} from "chart.js"
 import { Line } from "react-chartjs-2"
 
-function LabourParticipationChart({ labels, laborParticipation }: { labels: string[]; laborParticipation: number[] }) {
+defaults.maintainAspectRatio = false
+defaults.responsive = true
+
+function InflationChart({ labels, inflation }: { labels: string[]; inflation: number }) {
 
     return (
         <div className="chart-container">
-            <div className="chart-supertitle">STRUCTURAL INDICATORS</div>
+            <div className="chart-supertitle">PRICE DYNAMICS</div>
             <div className="chart-header">
-                <div className="chart-title">Labour Force Participation</div>
-                <div className="chart-subtitle">Active workforce as percentage of working-age population</div>
+                <div className="chart-title">Inflation Rollercoaster</div>
+                <div className="chart-subtitle">CPI Headline Rate 1990-2024 (log scale)</div>
             </div>
             <div className="chart-body">
             <Line
-                key={JSON.stringify(laborParticipation)}
-                datasetIdKey="lab-id"
+                key={JSON.stringify(inflation)}
+                datasetIdKey="kpi-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Labor Participation Rate',
-                            data: laborParticipation,
-                            backgroundColor: "#6a4c93",
-                            borderColor: "#6a4c93"
+                            label: 'Inflation by Year',
+                            data: inflation,
+                            backgroundColor: "#c7522a",
+                            borderColor: "#c7522a"
                         },
 
                     ],
@@ -28,11 +34,10 @@ function LabourParticipationChart({ labels, laborParticipation }: { labels: stri
                 options={{
                     elements: {
                         point: {
-                            hoverRadius: 10,
-                            hitRadius: 40,
-                            hoverBorderWidth: 10
+                            hoverRadius: 20
                         }
-                    }, plugins: {
+                    },
+                    plugins: {
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -66,4 +71,4 @@ function LabourParticipationChart({ labels, laborParticipation }: { labels: stri
     )
 }
 
-export default LabourParticipationChart
+export default InflationChart

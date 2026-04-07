@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2"
 
-function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number[] }) {
+function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number }) {
 
     return (
         <div className="chart-container">
@@ -12,7 +12,7 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
             <div className="chart-body">
             <Line
                 key={JSON.stringify(laborProductivity)}
-                datasetIdKey="lab-id"
+                datasetIdKey="productivity-id"
                 data={{
                     labels: labels,
                     datasets: [

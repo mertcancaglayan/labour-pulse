@@ -2,9 +2,9 @@ import { Line } from "react-chartjs-2"
 
 interface UnemploymentChartProps {
     labels: string[];
-    totalUnemployment: number[];
-    youthUnemployment: number[];
-    graduateUnemployment: number[];
+    totalUnemployment: number;
+    youthUnemployment: number;
+    graduateUnemployment: number;
 }
 
 function UnemploymentChart({ labels, totalUnemployment, youthUnemployment, graduateUnemployment }: UnemploymentChartProps) {

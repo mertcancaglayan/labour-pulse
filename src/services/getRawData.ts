@@ -23,9 +23,9 @@ export interface DataI {
 	decimal: number;
 }
 
-const loadInitialData = async (): Promise<[DataI[], DataI[]]> => {
+const loadInitialData = async (country: string): Promise<[DataI[], DataI[]]> => {
 	try {
-		const [laborRaw, ecoRaw] = await Promise.all([getLaborMetrics(), getEconomicMetrics()]);
+		const [laborRaw, ecoRaw] = await Promise.all([getLaborMetrics(country), getEconomicMetrics(country)]);
 
 		return [laborRaw, ecoRaw];
 	} catch (error) {
@@ -34,7 +34,7 @@ const loadInitialData = async (): Promise<[DataI[], DataI[]]> => {
 	}
 };
 
-export const getData = async (): Promise<Record<number, TransformedDataI>> => {
-	const [laborRaw, ecoRaw] = await loadInitialData();
+export const getData = async (country: string): Promise<Record<number, TransformedDataI>> => {
+	const [laborRaw, ecoRaw] = await loadInitialData(country);
 	return transformMergedData(laborRaw, ecoRaw);
 };
