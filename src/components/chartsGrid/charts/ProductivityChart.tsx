@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2"
 
-function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number }) {
+function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number[] }) {
 
     return (
         <div className="chart-container">

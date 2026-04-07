@@ -26,9 +26,7 @@ function ChartsGrid() {
         );
     }
 
-    const stringLabels = Array.isArray(countryData.labels)
-        ? countryData.labels.map(String)
-        : [String(countryData.labels)];
+    const stringLabels = countryData.labels;
 
     return (
         <div className="charts-grid">
