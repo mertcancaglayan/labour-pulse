@@ -19,7 +19,7 @@ export const useData = (country: string) => {
         }
 
         init()
-    }, [])
+    }, [country])
 
     const labels :string[] = useMemo(() => Object.keys(data), [data])
 
