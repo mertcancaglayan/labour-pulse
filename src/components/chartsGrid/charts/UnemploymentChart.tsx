@@ -1,38 +1,57 @@
 import { Line } from "react-chartjs-2"
 
-function LabourParticipationChart({ labels, laborParticipation }: { labels: string[]; laborParticipation: number[] }) {
+interface UnemploymentChartProps {
+    labels: string[];
+    totalUnemployment: number;
+    youthUnemployment: number;
+    graduateUnemployment: number;
+}
+
+function UnemploymentChart({ labels, totalUnemployment, youthUnemployment, graduateUnemployment }: UnemploymentChartProps) {
 
     return (
         <div className="chart-container">
-            <div className="chart-supertitle">STRUCTURAL INDICATORS</div>
+            <div className="chart-supertitle">LABOUR MARKET</div>
             <div className="chart-header">
-                <div className="chart-title">Labour Force Participation</div>
-                <div className="chart-subtitle">Active workforce as percentage of working-age population</div>
+                <div className="chart-title">Three Decades of Labour Strain</div>
+                <div className="chart-subtitle">Total · Youth · Graduate unemployment rates, 1991–2025</div>
             </div>
             <div className="chart-body">
             <Line
-                key={JSON.stringify(laborParticipation)}
-                datasetIdKey="lab-id"
+                key={JSON.stringify(labels)}
+                datasetIdKey="Unp-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Labor Participation Rate',
-                            data: laborParticipation,
-                            backgroundColor: "#6a4c93",
-                            borderColor: "#6a4c93"
+                            label: 'Total Unemployment',
+                            data: totalUnemployment,
+                            backgroundColor: "#c25339",
+                            borderColor: "#c25339",
+                        }, {
+                            label: 'Youth Unemployment',
+                            data: youthUnemployment,
+                            backgroundColor: "#2a3b5c",
+                            borderColor: "#2a3b5c",
+                        }, {
+                            label: 'Graduate Unemployment',
+                            data: graduateUnemployment,
+                            backgroundColor: "#3c5e37",
+                            borderColor: "#3c5e37",
                         },
-
                     ],
                 }}
                 options={{
                     elements: {
                         point: {
                             hoverRadius: 10,
-                            hitRadius: 40,
+                            hitRadius: 10,
                             hoverBorderWidth: 10
                         }
-                    }, plugins: {
+
+                    }
+                    ,
+                    plugins: {
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -66,4 +85,4 @@ function LabourParticipationChart({ labels, laborParticipation }: { labels: stri
     )
 }
 
-export default LabourParticipationChart
+export default UnemploymentChart

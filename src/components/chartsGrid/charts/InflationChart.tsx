@@ -1,26 +1,32 @@
+import {
+    defaults,
+} from "chart.js"
 import { Line } from "react-chartjs-2"
 
-function ProductivityChart({ labels, laborProductivity }: { labels: string[]; laborProductivity: number[] }) {
+defaults.maintainAspectRatio = false
+defaults.responsive = true
+
+function InflationChart({ labels, inflation }: { labels: string[]; inflation: number }) {
 
     return (
         <div className="chart-container">
-            <div className="chart-supertitle">ECONOMIC OUTPUT</div>
+            <div className="chart-supertitle">PRICE DYNAMICS</div>
             <div className="chart-header">
-                <div className="chart-title">Productivity per Worker</div>
-                <div className="chart-subtitle">Labour productivity in USD (PPP adjusted)</div>
+                <div className="chart-title">Inflation Rollercoaster</div>
+                <div className="chart-subtitle">CPI Headline Rate 1990-2024 (log scale)</div>
             </div>
             <div className="chart-body">
             <Line
-                key={JSON.stringify(laborProductivity)}
-                datasetIdKey="productivity-id"
+                key={JSON.stringify(inflation)}
+                datasetIdKey="kpi-id"
                 data={{
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Labor Productivity',
-                            data: laborProductivity,
-                            backgroundColor: "#1982c4",
-                            borderColor: "#1982c4"
+                            label: 'Inflation by Year',
+                            data: inflation,
+                            backgroundColor: "#c7522a",
+                            borderColor: "#c7522a"
                         },
 
                     ],
@@ -28,11 +34,10 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
                 options={{
                     elements: {
                         point: {
-                            hoverRadius: 10,
-                            hitRadius: 40,
-                            hoverBorderWidth: 10
+                            hoverRadius: 20
                         }
-                    }, plugins: {
+                    },
+                    plugins: {
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -45,7 +50,10 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
                                     }
 
                                     if (context.parsed.y !== null) {
-                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                        label += new Intl.NumberFormat('en-US', {
+                                            style: 'percent',
+                                            maximumFractionDigits: 1
+                                        }).format(context.parsed.y / 100);
                                     }
 
                                     return label;
@@ -63,4 +71,4 @@ function ProductivityChart({ labels, laborProductivity }: { labels: string[]; la
     )
 }
 
-export default ProductivityChart
+export default InflationChart
