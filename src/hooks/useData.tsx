@@ -1,38 +1,30 @@
-import { useEffect, useMemo, useState } from "react";
-import type { TransformedDataI } from "../services/transformer";
-import { getData } from "../services/getRawData";
+import { useEffect, useMemo, useState } from "react"
+import type { TransformedDataI } from "../services/transformer"
+import { getData } from "../services/getRawData"
 
 export const useData = (country: string) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<unknown>(null);
-    const [data, setData] = useState<Record<number, TransformedDataI>>({});
+    const [isLoading, setIsLoading] = useState(true)
+    const [data, setData] = useState<Record<number, TransformedDataI>>({})
 
     useEffect(() => {
         const init = async () => {
-            setIsLoading(true);
-            setError(null);
-
             try {
-                const result = await getData(country);
-                setData(result);
-            } catch (err) {
-                console.error("Initialization failed", err);
-                setError(err);
+                const result = await getData(country)
+                setData(result)
+            } catch (error) {
+                console.error("Initialization failed", error)
             } finally {
-                setIsLoading(false);
+                setIsLoading(false)
             }
-        };
+        }
 
-        init();
-    }, [country]);
+        init()
+    }, [])
 
-    const labels = useMemo(
-        () => Object.keys(data).map(Number),
-        [data]
-    );
+    const labels :string[] = useMemo(() => Object.keys(data), [data])
 
     const datasets = useMemo(() => {
-        const values = Object.values(data);
+        const values = Object.values(data)
 
         return {
             totalUnemployment: values.map(item => item["Total Unemployment"]),
@@ -46,18 +38,15 @@ export const useData = (country: string) => {
 
             manufacturingOutput: values.map(item => item["Manufacturing Output (% of GDP)"]),
 
-            inflation: values.map(item =>
-                Math.trunc(item["Headline Inflation (CPI)"])
-            ),
+            inflation: values.map(item => Math.trunc(item["Headline Inflation (CPI)"])),
 
             laborProductivity: values.map(item => item["Labor Productivity (USD)"]),
-        };
-    }, [data]);
+        }
+    }, [data])
 
     return {
         isLoading,
-        error,
         labels,
-        ...datasets,
-    };
-};
+        ...datasets
+    }
+}

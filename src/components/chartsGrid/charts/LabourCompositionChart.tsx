@@ -2,9 +2,9 @@ import {  Line } from "react-chartjs-2";
 
 interface LabourCompositionChartProps {
     labels: string[];
-    servicesSector: number;
-    industrySector: number;
-    agricultureSector: number;
+    servicesSector: number[];
+    industrySector: number[];
+    agricultureSector: number[];
 }
 
 function LabourCompositionChart({ labels, servicesSector, industrySector, agricultureSector }: LabourCompositionChartProps) {

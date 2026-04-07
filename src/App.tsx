@@ -15,7 +15,8 @@ import {
   BarElement,
 } from "chart.js"
 import { CountryDataProvider } from './context/context'
-import ChartsGrid from './components/chartsGrid/chartsGrid'
+import ChartsGrid from './components/chartsGrid/ChartsGrid'
+
 
 ChartJS.register(
   CategoryScale,

@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2"
 defaults.maintainAspectRatio = false
 defaults.responsive = true
 
-function InflationChart({ labels, inflation }: { labels: string[]; inflation: number }) {
+function InflationChart({ labels, inflation }: { labels: string[]; inflation: number[] }) {
 
     return (
         <div className="chart-container">

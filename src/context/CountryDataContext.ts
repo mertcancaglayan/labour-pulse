@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import type { TransformedDataI } from "../services/transformer";
+import type { DataSetsI } from "./context";
 
-export type ContextType = {
+interface CountryDataContextType {
 	country: string;
-	switchCountry: (selectedCountry: string) => void;
-	countryData: TransformedDataI | undefined;
-};
+	switchCountry: (c: string) => void;
+	countryData: DataSetsI; 
+}
 
-export const CountryDataContext = createContext<ContextType | null>(null);
+export const CountryDataContext = createContext<CountryDataContextType | null>(null);

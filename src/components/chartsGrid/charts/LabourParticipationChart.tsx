@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2"
 
-function LabourParticipationChart({ labels, laborParticipation }: { labels: string[]; laborParticipation: number }) {
+function LabourParticipationChart({ labels, laborParticipation }: { labels: string[]; laborParticipation: number[] }) {
 
     return (
         <div className="chart-container">
