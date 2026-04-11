@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import type { DataSetsI } from "./context";
+import type { useData } from "../hooks/useData";
 
 interface CountryDataContextType {
 	country: string;
 	switchCountry: (c: string) => void;
-	countryData: DataSetsI; 
+	countryData: ReturnType<typeof useData>;
 }
 
 export const CountryDataContext = createContext<CountryDataContextType | null>(null);

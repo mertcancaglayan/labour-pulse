@@ -8,6 +8,7 @@ export const useData = (country: string) => {
 
     useEffect(() => {
         const init = async () => {
+            setIsLoading(true)
             try {
                 const result = await getData(country)
                 setData(result)

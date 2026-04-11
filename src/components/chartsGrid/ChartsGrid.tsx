@@ -8,7 +8,7 @@ import { useCountryData } from "../../hooks/useCountryData";
 function ChartsGrid() {
     const { countryData } = useCountryData();
 
-    if (!countryData) {
+    if (countryData.isLoading) {
         return (
             <div
                 style={{
