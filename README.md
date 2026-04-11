@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Labour Pulse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Labour Pulse, ülke bazlı işgücü (ve benzeri makroekonomik) verilerini görselleştirmek için geliştirilmiş modern ve interaktif bir web uygulamasıdır. Kullanıcıların verileri çeşitli grafikler (Chart.js) yardımıyla kolayca incelemesine ve analiz etmesine olanak tanır.
 
-Currently, two official plugins are available:
+## 🚀 Kullanılan Teknolojiler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Bu proje, yüksek performans ve modern standartlar gözetilerek aşağıdaki teknolojilerle inşa edilmiştir:
 
-## React Compiler
+- **React (v19)** - Kullanıcı arayüzü kütüphanesi
+- **TypeScript** - Statik tip denetimi ve güvenli kod yazımı
+- **Vite** - Hızlı derleme ve geliştirme ortamı
+- **Chart.js & React-Chartjs-2** - İnteraktif ve dinamik veri görselleştirmesi
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Kurulum ve Çalıştırma
 
-## Expanding the ESLint configuration
+Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları sırasıyla izleyin:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Proje dizinine gidin:
+   ```bash
+   cd labour-pulse
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Gerekli bağımlılıkları yükleyin:
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. Geliştirme sunucusunu (development server) başlatın:
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Uygulama varsayılan olarak `http://localhost:5173` adresinde çalışmaya başlayacaktır.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ Proje Yapısı
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `src/components/`: Tekrar kullanılabilir UI bileşenleri (Şemalar, Chart listeleri vb.)
+- `src/context/`: Ülke verilerinin global olarak yönetildiği React Context yapısı (`CountryDataProvider`)
+- `src/layout/`: Ana sayfa düzenini oluşturan parçalar (Header, Footer, EditionBar vb.)
